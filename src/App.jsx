@@ -1,65 +1,101 @@
-import { HashRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom'
-import { useDossiers } from './hooks/useDossiers'
 import { useTheme } from './hooks/useTheme'
-import HomePage from './pages/HomePage'
-import DossierPage from './pages/DossierPage'
 import './styles/global.css'
 
-function LegacyRedirect() {
-  const { id } = useParams()
-  return <Navigate to={`/dossier/${id}`} replace />
-}
-
 function App() {
-  const { dossiers, allTags, loading, error } = useDossiers()
   const { theme, toggleTheme } = useTheme()
 
-  if (loading) {
-    return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'var(--bg-primary)',
-        color: 'var(--text-secondary)',
-        fontFamily: 'var(--font-mono)',
-        fontSize: '0.85rem',
-      }}>
-        Loading research database...
-      </div>
-    )
-  }
-
-  if (error) {
-    return (
-      <div style={{
-        minHeight: '100vh',
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: 'var(--bg-primary)',
-        color: 'var(--accent-red)',
-        fontFamily: 'var(--font-mono)',
-        fontSize: '0.85rem',
-        gap: '1rem',
-      }}>
-        <span style={{ fontSize: '2rem' }}>⚠️</span>
-        <p>Failed to load dossiers: {error}</p>
-      </div>
-    )
-  }
-
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<HomePage dossiers={dossiers} allTags={allTags} theme={theme} toggleTheme={toggleTheme} />} />
-        <Route path="/dossier/:id" element={<DossierPage dossiers={dossiers} theme={theme} toggleTheme={toggleTheme} />} />
-        {/* Legacy redirect: /political-analysis → /dossier/political-analysis */}
-        <Route path="/:id" element={<LegacyRedirect />} />
-      </Routes>
-    </Router>
+    <div style={{
+      minHeight: '100vh',
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      background: 'var(--bg-primary)',
+      color: 'var(--text-primary)',
+      fontFamily: 'var(--font-sans)',
+      textAlign: 'center',
+      padding: '2rem',
+    }}>
+      <button
+        onClick={toggleTheme}
+        style={{
+          position: 'absolute',
+          top: '1.5rem',
+          right: '1.5rem',
+          background: 'var(--overlay-light)',
+          border: '1px solid var(--border-color)',
+          borderRadius: 'var(--radius-md)',
+          padding: '8px 12px',
+          cursor: 'pointer',
+          fontSize: '1.1rem',
+          color: 'var(--text-muted)',
+        }}
+        title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+      >
+        {theme === 'light' ? '\u{1F319}' : '\u{2600}\u{FE0F}'}
+      </button>
+
+      <p style={{
+        fontFamily: 'var(--font-mono)',
+        fontSize: '0.75rem',
+        color: 'var(--accent-orange)',
+        textTransform: 'uppercase',
+        letterSpacing: '2px',
+        marginBottom: '1.5rem',
+      }}>
+        Coming Soon
+      </p>
+
+      <h1 style={{
+        fontFamily: 'var(--font-serif)',
+        fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+        fontWeight: 700,
+        background: 'var(--header-gradient)',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+        backgroundClip: 'text',
+        lineHeight: 1.2,
+        marginBottom: '1rem',
+      }}>
+        Riz Razak
+      </h1>
+
+      <p style={{
+        color: 'var(--text-secondary)',
+        fontSize: '1.1rem',
+        fontWeight: 300,
+        maxWidth: '500px',
+        marginBottom: '2rem',
+      }}>
+        Personal site under construction.
+      </p>
+
+      <a
+        href="https://analyst.rizrazak.com/"
+        style={{
+          fontFamily: 'var(--font-mono)',
+          fontSize: '0.82rem',
+          color: 'var(--accent-cyan)',
+          textDecoration: 'none',
+          padding: '10px 24px',
+          border: '1px solid var(--border-color)',
+          borderRadius: 'var(--radius-sm)',
+          transition: 'all 150ms ease',
+        }}
+      >
+        Political Research &rarr; analyst.rizrazak.com
+      </a>
+
+      <p style={{
+        marginTop: '3rem',
+        color: 'var(--text-muted)',
+        fontSize: '0.72rem',
+        fontFamily: 'var(--font-mono)',
+      }}>
+        &copy; 2026 Riz Razak
+      </p>
+    </div>
   )
 }
 
