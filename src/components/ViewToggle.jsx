@@ -31,17 +31,6 @@ export default function ViewToggle({ view, onChangeView }) {
       <button
         style={{
           ...styles.button,
-          background: view === 'tile' ? 'var(--bg-card)' : 'transparent',
-          color: view === 'tile' ? 'var(--text-primary)' : 'var(--text-muted)',
-          boxShadow: view === 'tile' ? 'var(--shadow-sm)' : 'none',
-        }}
-        onClick={() => onChangeView('tile')}
-      >
-        <span style={{ fontSize: '1rem' }}>▦</span> Tiles
-      </button>
-      <button
-        style={{
-          ...styles.button,
           background: view === 'list' ? 'var(--bg-card)' : 'transparent',
           color: view === 'list' ? 'var(--text-primary)' : 'var(--text-muted)',
           boxShadow: view === 'list' ? 'var(--shadow-sm)' : 'none',
@@ -49,6 +38,17 @@ export default function ViewToggle({ view, onChangeView }) {
         onClick={() => onChangeView('list')}
       >
         <span style={{ fontSize: '1rem' }}>☰</span> List
+      </button>
+      <button
+        style={{
+          ...styles.button,
+          background: view === 'tile' ? 'var(--bg-card)' : 'transparent',
+          color: view === 'tile' ? 'var(--text-primary)' : 'var(--text-muted)',
+          boxShadow: view === 'tile' ? 'var(--shadow-sm)' : 'none',
+        }}
+        onClick={() => onChangeView('tile')}
+      >
+        <span style={{ fontSize: '1rem' }}>▦</span> Tiles
       </button>
     </div>
   )
