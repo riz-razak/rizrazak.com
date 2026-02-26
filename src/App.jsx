@@ -1,8 +1,13 @@
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
+import { HashRouter as Router, Routes, Route, Navigate, useParams } from 'react-router-dom'
 import { useDossiers } from './hooks/useDossiers'
 import HomePage from './pages/HomePage'
 import DossierPage from './pages/DossierPage'
 import './styles/global.css'
+
+function LegacyRedirect() {
+  const { id } = useParams()
+  return <Navigate to={`/dossier/${id}`} replace />
+}
 
 function App() {
   const { dossiers, allTags, loading, error } = useDossiers()
@@ -49,6 +54,8 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage dossiers={dossiers} allTags={allTags} />} />
         <Route path="/dossier/:id" element={<DossierPage dossiers={dossiers} />} />
+        {/* Legacy redirect: /political-analysis → /dossier/political-analysis */}
+        <Route path="/:id" element={<LegacyRedirect />} />
       </Routes>
     </Router>
   )

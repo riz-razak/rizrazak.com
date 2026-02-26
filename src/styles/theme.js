@@ -9,6 +9,9 @@ export const TAG_COLORS = {
   'Economy':    { bg: 'rgba(255,107,107,0.12)',text: '#ff6b6b', border: 'rgba(255,107,107,0.25)' },
   'Military':   { bg: 'rgba(148,163,184,0.12)',text: '#94a3b8', border: 'rgba(148,163,184,0.25)' },
   'Religion':   { bg: 'rgba(251,191,36,0.12)', text: '#fbbf24', border: 'rgba(251,191,36,0.25)' },
+  'Terrorism':  { bg: 'rgba(239,68,68,0.12)',  text: '#ef4444', border: 'rgba(239,68,68,0.25)' },
+  'Intelligence': { bg: 'rgba(99,102,241,0.12)', text: '#6366f1', border: 'rgba(99,102,241,0.25)' },
+  'Conspiracy': { bg: 'rgba(168,85,247,0.12)', text: '#a855f7', border: 'rgba(168,85,247,0.25)' },
 }
 
 const FALLBACK_COLORS = [

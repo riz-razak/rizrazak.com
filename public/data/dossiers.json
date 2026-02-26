@@ -3,6 +3,19 @@
   "lastUpdated": "2026-02-26",
   "dossiers": [
     {
+      "id": "easter-attacks",
+      "date": "2026-02-26",
+      "title": "The Arrest of Suresh Sallay: Easter Sunday Attacks Political Dossier",
+      "description": "A deep investigation into the arrest of intelligence operative Suresh Sallay, the Easter Sunday bombings conspiracy, and the political machinations connecting Sri Lanka's intelligence apparatus to the worst terrorist attack in the nation's history.",
+      "authors": ["Riz Razak"],
+      "tags": ["Terrorism", "Sri Lanka", "Politics", "Intelligence", "Religion", "Conspiracy"],
+      "thumbnailUrl": "/images/thumbnails/easter-attacks.jpg",
+      "contentUrl": "/dossiers/easter-attacks/index.html",
+      "sections": 8,
+      "features": ["Conspiracy board", "Player connections", "Timeline analysis"],
+      "status": "published"
+    },
+    {
       "id": "political-analysis",
       "date": "2026-02-25",
       "title": "The Death of Sri Lankan Cricket: Politics, Mafia & The Road to Ruin",
