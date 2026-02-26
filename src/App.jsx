@@ -6,7 +6,7 @@ import './styles/global.css'
 âââââââââââââââââââââââââââââââââââââââââââ */
 
 const iconLinkStyle = {
-  color: 'rgba(255,255,255,0.6)',
+  color: '#2a5020',
   transition: 'color 0.2s, transform 0.2s',
   display: 'flex',
   alignItems: 'center',
@@ -144,58 +144,7 @@ const KawaiiElephant = () => (
         <stop offset="0%" stopColor="#b8c4d0"/>
         <stop offset="100%" stopColor="#98a8b8"/>
       </linearGradient>
-    </defs>
-    <ellipse cx="40" cy="56" rx="30" ry="4" fill="rgba(0,0,0,0.08)"/>
-    <ellipse cx="38" cy="32" rx="24" ry="18" fill="url(#elephantBody)" stroke="#8898a8" strokeWidth="1"/>
-    <circle cx="60" cy="22" r="14" fill="#b0bcc8" stroke="#8898a8" strokeWidth="1"/>
-    <ellipse cx="55" cy="16" rx="10" ry="12" fill="#a0b0c0" stroke="#8898a8" strokeWidth="0.8"/>
-    <ellipse cx="55" cy="16" rx="6" ry="8" fill="#c0c8d4" opacity="0.5"/>
-    <ellipse cx="64" cy="20" rx="3.5" ry="3" fill="white"/>
-    <circle cx="65" cy="20.5" r="2" fill="#1a2a30"/>
-    <circle cx="66" cy="19.8" r="0.8" fill="white"/>
-    <ellipse cx="68" cy="25" rx="3" ry="1.8" fill="#d0909a" opacity="0.25"/>
-    <circle cx="62" cy="13" r="2" fill="#d4956a"/>
-    <circle cx="62" cy="13" r="0.8" fill="#e8b080"/>
-    <path d="M72 26 Q78 34 74 42 Q72 48 66 46" stroke="#8898a8" strokeWidth="3.5" fill="none" strokeLinecap="round"/>
-    <path d="M70 28 L73 33" stroke="#f0ece0" strokeWidth="2" strokeLinecap="round"/>
-    <rect x="22" y="44" width="7" height="12" rx="3.5" fill="#a0b0c0"/>
-    <rect x="34" y="45" width="7" height="12" rx="3.5" fill="#a0b0c0"/>
-    <rect x="46" y="44" width="7" height="12" rx="3.5" fill="#a0b0c0"/>
-    <path d="M14 30 Q6 36 8 44" stroke="#8898a8" strokeWidth="2" fill="none" strokeLinecap="round"/>
-    <ellipse cx="8" cy="45" rx="2.5" ry="2" fill="#a0b0c0"/>
-  </svg>
-)
-
-const KawaiiPeacock = () => (
-  <svg width="55" height="55" viewBox="0 0 55 55" fill="none">
-    <defs>
-      <radialGradient id="eyespot" cx="50%" cy="50%" r="50%">
-        <stop offset="0%" stopColor="#40c0a0"/>
-        <stop offset="50%" stopColor="#2080a0"/>
-        <stop offset="100%" stopColor="#1a5a70" stopOpacity="0.6"/>
-      </radialGradient>
-    </defs>
-    <g>
-      <path d="M27 28 L5 3" stroke="#2a8a7a" strokeWidth="1.5" opacity="0.5"/>
-      <path d="M27 28 L15 0" stroke="#2a8a7a" strokeWidth="1.5" opacity="0.55"/>
-      <path d="M27 28 L27 -2" stroke="#3a9a8a" strokeWidth="1.5" opacity="0.6"/>
-      <path d="M27 28 L39 0" stroke="#2a8a7a" strokeWidth="1.5" opacity="0.55"/>
-      <path d="M27 28 L49 3" stroke="#2a8a7a" strokeWidth="1.5" opacity="0.5"/>
-      <circle cx="5" cy="3" r="3.5" fill="url(#eyespot)"/>
-      <circle cx="15" cy="0" r="3.5" fill="url(#eyespot)"/>
-      <circle cx="27" cy="-2" r="4" fill="url(#eyespot)"/>
-      <circle cx="39" cy="0" r="3.5" fill="url(#eyespot)"/>
-      <circle cx="49" cy="3" r="3.5" fill="url(#eyespot)"/>
-    </g>
-    <ellipse cx="27" cy="38" rx="9" ry="12" fill="#1a7a6a" stroke="#0a5a4a" strokeWidth="0.8"/>
-    <circle cx="27" cy="24" r="6" fill="#2a9a88"/>
-    <ellipse cx="30" cy="23" rx="2" ry="2.2" fill="white"/>
-    <circle cx="30.5" cy="23.2" r="1.2" fill="#0a2a20"/>
-    <circle cx="31" cy="22.5" r="0.5" fill="white"/>
-    <path d="M33 24 L37 23 L33 25.5" fill="#d4a050"/>
-    <line x1="25" y1="18" x2="23" y2="13" stroke="#2a9a88" strokeWidth="1"/>
-    <line x1="27" y1="18" x2="27" y2="12" stroke="#2a9a88" strokeWidth="1"/>
-    <line x1="29" y1="18.5" x2="31" y2="13.5" stroke="#2a9a88" strokeWidth="1"/>
+    <="29" y1="18.5" x2="31" y2="13.5" stroke="#2a9a88" strokeWidth="1"/>
     <circle cx="23" cy="12.5" r="2" fill="#40c0a0"/>
     <circle cx="27" cy="11.5" r="2" fill="#40c0a0"/>
     <circle cx="31" cy="13" r="2" fill="#40c0a0"/>
@@ -378,7 +327,7 @@ const TreesNear = () => (
 
 /* âââââââââââââââââââââââââââââââââââââââââââ
    CSS-IN-JS KEYFRAMES (injected once)
-âââââââââââââââââââââââââââââââââââââââââââ */
+ââââââââââââââââââââââââââââââââââââââââââ */
 
 const SCENE_CSS = `
   @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
