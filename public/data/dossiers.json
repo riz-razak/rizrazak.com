@@ -1,0 +1,19 @@
+{
+  "version": "1.0",
+  "lastUpdated": "2026-02-26",
+  "dossiers": [
+    {
+      "id": "political-analysis",
+      "date": "2026-02-25",
+      "title": "The Death of Sri Lankan Cricket: Politics, Mafia & The Road to Ruin",
+      "description": "How political patronage, a \"cricket mafia\", toxic fan culture, and systemic institutional rot destroyed a once-proud cricketing nation — and why the new government appears powerless to fix it.",
+      "authors": ["Riz Razak"],
+      "tags": ["Cricket", "Corruption", "Sports", "Politics", "Sri Lanka"],
+      "thumbnailUrl": "/images/thumbnails/political-analysis.jpg",
+      "contentUrl": "/dossiers/political-analysis/index.html",
+      "sections": 13,
+      "features": ["Game theory analysis", "Conspiracy board", "Stakeholder mapping"],
+      "status": "published"
+    }
+  ]
+}

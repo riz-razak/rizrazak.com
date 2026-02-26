@@ -1,111 +1,20 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Riz Razak — Political Research</title>
-<style>
-  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Playfair+Display:wght@700;800&display=swap');
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body {
-    font-family: 'Inter', sans-serif;
-    background: #0a0a0f;
-    color: #e8e8f0;
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  .container {
-    text-align: center;
-    padding: 2rem;
-    max-width: 700px;
-  }
-  h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 2.5rem;
-    font-weight: 800;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(135deg, #fff, #ffd700);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-  .subtitle {
-    color: #a0a0b8;
-    font-size: 1rem;
-    margin-bottom: 3rem;
-    font-weight: 300;
-  }
-  .article-card {
-    background: rgba(22,22,42,0.8);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 12px;
-    padding: 2rem;
-    text-align: left;
-    text-decoration: none;
-    display: block;
-    transition: all 0.3s;
-    margin-bottom: 1rem;
-  }
-  .article-card:hover {
-    border-color: rgba(255,215,0,0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(255,215,0,0.08);
-  }
-  .article-card .badge {
-    display: inline-block;
-    background: rgba(255,58,58,0.15);
-    border: 1px solid rgba(255,58,58,0.3);
-    color: #ff3a3a;
-    padding: 4px 12px;
-    border-radius: 20px;
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    margin-bottom: 0.75rem;
-  }
-  .article-card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.4rem;
-    color: #fff;
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-  }
-  .article-card p {
-    font-size: 0.85rem;
-    color: #a0a0b8;
-    line-height: 1.6;
-  }
-  .article-card .meta {
-    font-size: 0.72rem;
-    color: #6a6a80;
-    margin-top: 0.75rem;
-  }
-  .footer {
-    margin-top: 3rem;
-    font-size: 0.7rem;
-    color: #6a6a80;
-  }
-  .footer a { color: #00d4ff; text-decoration: none; }
-</style>
-</head>
-<body>
-<div class="container">
-  <h1>Political Research</h1>
-  <p class="subtitle">Deep analysis beyond the headlines — Riz Razak</p>
-
-  <a href="/political-analysis/" class="article-card">
-    <div class="badge">New — February 2026</div>
-    <h2>The Death of Sri Lankan Cricket: Politics, Mafia & The Road to Ruin</h2>
-    <p>How political patronage, a "cricket mafia", toxic fan culture, and systemic institutional rot destroyed a once-proud cricketing nation — and why the new government appears powerless to fix it.</p>
-    <div class="meta">13 sections &bull; Game theory analysis &bull; Conspiracy board &bull; Stakeholder mapping</div>
-  </a>
-
-  <div class="footer">
-    <a href="https://dgtl.lk" target="_blank">DGTL</a>
-  </div>
-</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Political Research — Riz Razak</title>
+    <meta name="description" content="Deep political analysis beyond the headlines. Research dossiers on politics, corruption, sports, and governance." />
+    <meta name="author" content="Riz Razak" />
+    <meta property="og:title" content="Political Research — Riz Razak" />
+    <meta property="og:description" content="Deep analysis beyond the headlines" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://www.rizrazak.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
 </html>
