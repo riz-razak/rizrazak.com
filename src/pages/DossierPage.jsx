@@ -17,11 +17,16 @@ const styles = {
     flexWrap: 'wrap',
     gap: '0.75rem',
   },
+  leftGroup: {
+    display: 'flex',
+    alignItems: 'center',
+    gap: '0.75rem',
+  },
   backBtn: {
     display: 'flex',
     alignItems: 'center',
     gap: '8px',
-    background: 'rgba(255,255,255,0.05)',
+    background: 'var(--overlay-light)',
     border: '1px solid var(--border-color)',
     borderRadius: 'var(--radius-sm)',
     padding: '8px 16px',
@@ -30,6 +35,17 @@ const styles = {
     fontSize: '0.82rem',
     fontFamily: 'var(--font-sans)',
     transition: 'all 150ms ease',
+  },
+  themeBtn: {
+    background: 'var(--overlay-light)',
+    border: '1px solid var(--border-color)',
+    borderRadius: 'var(--radius-sm)',
+    padding: '8px 12px',
+    cursor: 'pointer',
+    fontSize: '1rem',
+    lineHeight: 1,
+    transition: 'all 150ms ease',
+    color: 'var(--text-muted)',
   },
   meta: {
     display: 'flex',
@@ -88,7 +104,7 @@ const styles = {
   },
 }
 
-export default function DossierPage({ dossiers }) {
+export default function DossierPage({ dossiers, theme, toggleTheme }) {
   const { id } = useParams()
   const navigate = useNavigate()
   const dossier = dossiers.find(d => d.id === id)
@@ -124,20 +140,31 @@ export default function DossierPage({ dossiers }) {
   return (
     <div style={styles.page}>
       <div style={styles.topBar}>
-        <button
-          style={styles.backBtn}
-          onClick={() => navigate('/')}
-          onMouseEnter={e => {
-            e.currentTarget.style.background = 'rgba(255,255,255,0.1)'
-            e.currentTarget.style.color = 'var(--text-primary)'
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.background = 'rgba(255,255,255,0.05)'
-            e.currentTarget.style.color = 'var(--text-secondary)'
-          }}
-        >
-          ← All Dossiers
-        </button>
+        <div style={styles.leftGroup}>
+          <button
+            style={styles.backBtn}
+            onClick={() => navigate('/')}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = 'var(--overlay-strong)'
+              e.currentTarget.style.color = 'var(--text-primary)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = 'var(--overlay-light)'
+              e.currentTarget.style.color = 'var(--text-secondary)'
+            }}
+          >
+            ← All Dossiers
+          </button>
+          {toggleTheme && (
+            <button
+              style={styles.themeBtn}
+              onClick={toggleTheme}
+              title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+            >
+              {theme === 'light' ? '🌙' : '☀️'}
+            </button>
+          )}
+        </div>
 
         <div style={styles.meta}>
           <span style={styles.date}>{formattedDate}</span>

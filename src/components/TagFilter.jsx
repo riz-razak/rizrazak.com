@@ -35,7 +35,7 @@ export default function TagFilter({ tags, selectedTags, onToggle }) {
             style={{
               ...styles.tag,
               background: isActive ? colors.text : colors.bg,
-              color: isActive ? '#0a0a0f' : colors.text,
+              color: isActive ? 'var(--tag-active-text)' : colors.text,
               border: `1px solid ${isActive ? colors.text : colors.border}`,
               fontWeight: isActive ? 600 : 500,
               transform: isActive ? 'scale(1.05)' : 'scale(1)',
@@ -50,9 +50,9 @@ export default function TagFilter({ tags, selectedTags, onToggle }) {
           onClick={() => selectedTags.forEach(t => onToggle(t))}
           style={{
             ...styles.tag,
-            background: 'rgba(255,255,255,0.05)',
+            background: 'var(--overlay-light)',
             color: 'var(--text-muted)',
-            border: '1px solid rgba(255,255,255,0.1)',
+            border: '1px solid var(--border-color)',
           }}
         >
           Clear all ✕

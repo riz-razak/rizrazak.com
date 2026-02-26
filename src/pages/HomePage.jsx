@@ -27,10 +27,10 @@ const styles = {
   },
 }
 
-export default function HomePage({ dossiers, allTags }) {
+export default function HomePage({ dossiers, allTags, theme, toggleTheme }) {
   const [query, setQuery] = useState('')
   const [selectedTags, setSelectedTags] = useState([])
-  const [view, setView] = useState('tile')
+  const [view, setView] = useState('list')
 
   const searched = useSearch(dossiers, query)
 
@@ -51,7 +51,7 @@ export default function HomePage({ dossiers, allTags }) {
 
   return (
     <div style={styles.page}>
-      <Header />
+      <Header theme={theme} toggleTheme={toggleTheme} />
 
       <div style={styles.content}>
         <SearchBar

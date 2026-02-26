@@ -9,8 +9,8 @@ const styles = {
   badge: {
     display: 'inline-block',
     padding: '4px 14px',
-    background: 'rgba(255,140,0,0.12)',
-    border: '1px solid rgba(255,140,0,0.25)',
+    background: 'var(--overlay-medium)',
+    border: '1px solid var(--border-color)',
     borderRadius: '20px',
     fontSize: '0.7rem',
     fontFamily: 'var(--font-mono)',
@@ -24,7 +24,7 @@ const styles = {
     fontFamily: 'var(--font-serif)',
     fontSize: 'clamp(2rem, 5vw, 3.2rem)',
     fontWeight: 700,
-    background: 'linear-gradient(135deg, #fff 0%, #ff8c00 50%, #ff3a3a 100%)',
+    background: 'var(--header-gradient)',
     WebkitBackgroundClip: 'text',
     WebkitTextFillColor: 'transparent',
     backgroundClip: 'text',
@@ -43,15 +43,47 @@ const styles = {
     marginTop: '0.5rem',
     fontFamily: 'var(--font-mono)',
   },
+  themeToggle: {
+    position: 'absolute',
+    top: '1.5rem',
+    right: '1.5rem',
+    background: 'var(--overlay-light)',
+    border: '1px solid var(--border-color)',
+    borderRadius: 'var(--radius-md)',
+    padding: '8px 12px',
+    cursor: 'pointer',
+    fontSize: '1.1rem',
+    lineHeight: 1,
+    transition: 'all 150ms ease',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+    color: 'var(--text-muted)',
+  },
+  themeLabel: {
+    fontSize: '0.7rem',
+    fontFamily: 'var(--font-mono)',
+    letterSpacing: '0.5px',
+  },
 }
 
-export default function Header() {
+export default function Header({ theme, toggleTheme }) {
   const navigate = useNavigate()
   const location = useLocation()
   const isHome = location.pathname === '/'
 
   return (
     <header style={styles.header}>
+      {toggleTheme && (
+        <button
+          style={styles.themeToggle}
+          onClick={toggleTheme}
+          title={`Switch to ${theme === 'light' ? 'dark' : 'light'} mode`}
+        >
+          {theme === 'light' ? '🌙' : '☀️'}
+          <span style={styles.themeLabel}>{theme === 'light' ? 'Dark' : 'Light'}</span>
+        </button>
+      )}
       <div
         style={styles.badge}
         onClick={() => navigate('/')}

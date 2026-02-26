@@ -18,7 +18,7 @@ const styles = {
     position: 'relative',
     paddingTop: '56.25%', /* 16:9 */
     overflow: 'hidden',
-    background: 'linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-card) 100%)',
+    background: 'var(--bg-secondary)',
   },
   image: {
     position: 'absolute',
@@ -38,7 +38,7 @@ const styles = {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    background: 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)',
+    background: 'var(--placeholder-gradient)',
     fontSize: '2.5rem',
   },
   body: {
@@ -84,7 +84,7 @@ const styles = {
 const TOPIC_EMOJIS = {
   'Cricket': '🏏', 'Politics': '🏛️', 'Corruption': '💰', 'Sports': '⚽',
   'Sri Lanka': '🇱🇰', 'Security': '🔒', 'Economy': '📊', 'Military': '⚔️',
-  'Religion': '🕉️', 'Government': '🏛️',
+  'Religion': '🕉️', 'Government': '🏛️', 'Terrorism': '💣', 'Intelligence': '🕵️',
 }
 
 function getEmoji(tags) {
@@ -109,7 +109,7 @@ export default function DossierTile({ dossier, index }) {
         ...styles.card,
         transform: hovered ? 'translateY(-4px)' : 'translateY(0)',
         borderColor: hovered ? 'var(--border-hover)' : 'var(--border-color)',
-        boxShadow: hovered ? '0 12px 40px rgba(0,0,0,0.4)' : '0 2px 8px rgba(0,0,0,0.2)',
+        boxShadow: hovered ? 'var(--shadow-hover)' : 'var(--shadow-md)',
         animationDelay: `${index * 50}ms`,
       }}
       onMouseEnter={() => setHovered(true)}
@@ -160,9 +160,9 @@ export default function DossierTile({ dossier, index }) {
           {dossier.tags.length > 3 && (
             <span style={{
               ...styles.tag,
-              background: 'rgba(255,255,255,0.05)',
+              background: 'var(--overlay-light)',
               color: 'var(--text-muted)',
-              border: '1px solid rgba(255,255,255,0.08)',
+              border: '1px solid var(--border-color)',
             }}>
               +{dossier.tags.length - 3}
             </span>

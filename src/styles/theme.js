@@ -1,24 +1,26 @@
+// Tag colors that work on both light and dark backgrounds
+// Using darker text colors for readability on white, with translucent bg/border
 export const TAG_COLORS = {
-  'Cricket':    { bg: 'rgba(255,58,58,0.12)',  text: '#ff3a3a', border: 'rgba(255,58,58,0.25)' },
-  'Politics':   { bg: 'rgba(255,140,0,0.12)',  text: '#ff8c00', border: 'rgba(255,140,0,0.25)' },
-  'Corruption': { bg: 'rgba(255,215,0,0.12)',  text: '#ffd700', border: 'rgba(255,215,0,0.25)' },
-  'Sri Lanka':  { bg: 'rgba(0,212,255,0.12)',  text: '#00d4ff', border: 'rgba(0,212,255,0.25)' },
-  'Sports':     { bg: 'rgba(0,204,136,0.12)',  text: '#00cc88', border: 'rgba(0,204,136,0.25)' },
-  'Security':   { bg: 'rgba(139,92,246,0.12)', text: '#8b5cf6', border: 'rgba(139,92,246,0.25)' },
-  'Government': { bg: 'rgba(74,158,255,0.12)', text: '#4a9eff', border: 'rgba(74,158,255,0.25)' },
-  'Economy':    { bg: 'rgba(255,107,107,0.12)',text: '#ff6b6b', border: 'rgba(255,107,107,0.25)' },
-  'Military':   { bg: 'rgba(148,163,184,0.12)',text: '#94a3b8', border: 'rgba(148,163,184,0.25)' },
-  'Religion':   { bg: 'rgba(251,191,36,0.12)', text: '#fbbf24', border: 'rgba(251,191,36,0.25)' },
-  'Terrorism':  { bg: 'rgba(239,68,68,0.12)',  text: '#ef4444', border: 'rgba(239,68,68,0.25)' },
-  'Intelligence': { bg: 'rgba(99,102,241,0.12)', text: '#6366f1', border: 'rgba(99,102,241,0.25)' },
-  'Conspiracy': { bg: 'rgba(168,85,247,0.12)', text: '#a855f7', border: 'rgba(168,85,247,0.25)' },
+  'Cricket':    { bg: 'rgba(220,38,38,0.1)',   text: '#dc2626', border: 'rgba(220,38,38,0.25)' },
+  'Politics':   { bg: 'rgba(217,119,6,0.1)',   text: '#d97706', border: 'rgba(217,119,6,0.25)' },
+  'Corruption': { bg: 'rgba(161,98,7,0.1)',    text: '#a16207', border: 'rgba(161,98,7,0.25)' },
+  'Sri Lanka':  { bg: 'rgba(8,145,178,0.1)',   text: '#0891b2', border: 'rgba(8,145,178,0.25)' },
+  'Sports':     { bg: 'rgba(5,150,105,0.1)',   text: '#059669', border: 'rgba(5,150,105,0.25)' },
+  'Security':   { bg: 'rgba(124,58,237,0.1)',  text: '#7c3aed', border: 'rgba(124,58,237,0.25)' },
+  'Government': { bg: 'rgba(37,99,235,0.1)',   text: '#2563eb', border: 'rgba(37,99,235,0.25)' },
+  'Economy':    { bg: 'rgba(225,29,72,0.1)',   text: '#e11d48', border: 'rgba(225,29,72,0.25)' },
+  'Military':   { bg: 'rgba(100,116,139,0.1)', text: '#64748b', border: 'rgba(100,116,139,0.25)' },
+  'Religion':   { bg: 'rgba(180,83,9,0.1)',    text: '#b45309', border: 'rgba(180,83,9,0.25)' },
+  'Terrorism':  { bg: 'rgba(185,28,28,0.1)',   text: '#b91c1c', border: 'rgba(185,28,28,0.25)' },
+  'Intelligence': { bg: 'rgba(79,70,229,0.1)', text: '#4f46e5', border: 'rgba(79,70,229,0.25)' },
+  'Conspiracy': { bg: 'rgba(147,51,234,0.1)',  text: '#9333ea', border: 'rgba(147,51,234,0.25)' },
 }
 
 const FALLBACK_COLORS = [
-  { bg: 'rgba(168,85,247,0.12)',  text: '#a855f7', border: 'rgba(168,85,247,0.25)' },
-  { bg: 'rgba(236,72,153,0.12)',  text: '#ec4899', border: 'rgba(236,72,153,0.25)' },
-  { bg: 'rgba(34,211,238,0.12)',  text: '#22d3ee', border: 'rgba(34,211,238,0.25)' },
-  { bg: 'rgba(132,204,22,0.12)',  text: '#84cc16', border: 'rgba(132,204,22,0.25)' },
+  { bg: 'rgba(147,51,234,0.1)',  text: '#9333ea', border: 'rgba(147,51,234,0.25)' },
+  { bg: 'rgba(219,39,119,0.1)', text: '#db2777', border: 'rgba(219,39,119,0.25)' },
+  { bg: 'rgba(6,182,212,0.1)',  text: '#0891b2', border: 'rgba(6,182,212,0.25)' },
+  { bg: 'rgba(101,163,13,0.1)', text: '#65a30d', border: 'rgba(101,163,13,0.25)' },
 ]
 
 export function getTagColor(tag) {

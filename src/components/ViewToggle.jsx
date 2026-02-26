@@ -33,7 +33,7 @@ export default function ViewToggle({ view, onChangeView }) {
           ...styles.button,
           background: view === 'tile' ? 'var(--bg-card)' : 'transparent',
           color: view === 'tile' ? 'var(--text-primary)' : 'var(--text-muted)',
-          boxShadow: view === 'tile' ? '0 2px 8px rgba(0,0,0,0.3)' : 'none',
+          boxShadow: view === 'tile' ? 'var(--shadow-sm)' : 'none',
         }}
         onClick={() => onChangeView('tile')}
       >
@@ -44,7 +44,7 @@ export default function ViewToggle({ view, onChangeView }) {
           ...styles.button,
           background: view === 'list' ? 'var(--bg-card)' : 'transparent',
           color: view === 'list' ? 'var(--text-primary)' : 'var(--text-muted)',
-          boxShadow: view === 'list' ? '0 2px 8px rgba(0,0,0,0.3)' : 'none',
+          boxShadow: view === 'list' ? 'var(--shadow-sm)' : 'none',
         }}
         onClick={() => onChangeView('list')}
       >

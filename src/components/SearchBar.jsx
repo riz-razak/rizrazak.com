@@ -32,7 +32,7 @@ const styles = {
     right: '12px',
     top: '50%',
     transform: 'translateY(-50%)',
-    background: 'rgba(255,255,255,0.08)',
+    background: 'var(--overlay-medium)',
     border: 'none',
     borderRadius: '50%',
     width: '28px',
@@ -74,7 +74,7 @@ export default function SearchBar({ value, onChange, resultCount, totalCount }) 
         style={{
           ...styles.input,
           borderColor: focused ? 'var(--accent-cyan)' : 'var(--border-color)',
-          boxShadow: focused ? '0 0 0 3px rgba(0,212,255,0.1)' : 'none',
+          boxShadow: focused ? '0 0 0 3px var(--overlay-medium)' : 'none',
         }}
       />
       {value && (
