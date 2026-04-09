@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5,user-scalable=yes">
+<meta name="theme-color" content="#2D6A4F">
+<title>Kalpanee's Art Circle — Report</title>
+<style>
+:root{--bg:#FAFAF8;--surface:#FFFFFF;--border:#E5E1DA;--text:#1A1A2E;--text2:#4A4A5A;--text3:#6B6B7B;--accent:#2D6A4F;--earth:#C4A35A;--red:#D4644A}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;background:var(--bg);color:var(--text);font-size:13px;line-height:1.65;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+
+/* Top nav */
+.topnav{position:sticky;top:0;z-index:20;background:var(--surface);border-bottom:1px solid var(--border);display:flex;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+.topnav::-webkit-scrollbar{display:none}
+.topnav button{flex:0 0 auto;padding:11px 16px;font-size:12px;font-weight:500;color:var(--text2);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap;font-family:inherit;transition:color .12s,border-color .12s}
+.topnav button.on{color:var(--accent);border-bottom-color:var(--accent);font-weight:600}
+.topnav button:active{background:rgba(45,106,79,.05)}
+
+/* Sub-nav pills */
+.subnav{display:flex;gap:6px;overflow-x:auto;padding:10px 0 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch;flex-wrap:nowrap}
+.subnav::-webkit-scrollbar{display:none}
+.pill{flex:0 0 auto;padding:5px 12px;font-size:11px;font-weight:500;color:var(--text2);background:var(--bg);border:1px solid var(--border);border-radius:20px;cursor:pointer;white-space:nowrap;font-family:inherit;transition:all .12s}
+.pill.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+
+/* Layout */
+.wrap{max-width:680px;margin:0 auto;padding:20px 16px 60px}
+.section{display:none}
+.section.on{display:block;animation:fadeIn .12s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:translateY(0)}}
+
+/* Cards */
+.card{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:10px}
+.card h3{font-size:13px;font-weight:700;margin-bottom:6px}
+.card p,.card .body{font-size:12.5px;color:var(--text2);line-height:1.7}
+
+/* Expandable */
+.expandable .card-head{cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:8px;-webkit-user-select:none;user-select:none}
+.expandable .card-head::after{content:'';display:inline-block;width:0;height:0;border-left:5px solid transparent;border-right:5px solid transparent;border-top:6px solid var(--text3);flex-shrink:0;margin-top:6px;transition:transform .15s}
+.expandable.open .card-head::after{transform:rotate(180deg)}
+.expandable .card-body{display:none;margin-top:12px;padding-top:12px;border-top:1px solid var(--border)}
+.expandable.open .card-body{display:block}
+
+/* Synthesis box */
+.synthesis{background:#F0F7F3;border:1px solid #D0E5D8;border-radius:8px;padding:12px 14px;margin-top:10px;font-size:12px;color:var(--accent);line-height:1.65}
+.synthesis strong{display:block;font-size:11px;text-transform:uppercase;letter-spacing:.3px;margin-bottom:4px}
+
+/* Challenge box */
+.challenge{border:1px solid var(--red);border-radius:8px;padding:12px 14px;margin-top:10px;font-size:12.5px;color:var(--text2);line-height:1.65;font-style:italic;background:#FFF9F7}
+
+/* Context note */
+.note{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:18px 18px;margin-bottom:16px;font-size:12.5px;color:var(--text2);line-height:1.75}
+.note p{margin-bottom:10px}
+.note p:last-child{margin-bottom:0}
+.note strong{color:var(--text)}
+
+/* Header block */
+.page-header{padding:28px 0 8px}
+.page-header h1{font-size:20px;font-weight:700;color:var(--text);letter-spacing:-.3px}
+.page-header .subtitle{font-size:12.5px;color:var(--text3);margin-top:4px}
+
+/* Set list */
+.set-title{font-size:11px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.5px;margin:16px 0 6px}
+.perf-list{list-style:none;margin-bottom:8px}
+.perf-list li{padding:5px 0;font-size:12.5px;color:var(--text2);border-bottom:1px solid #f5f4f2}
+.perf-list li:last-child{border-bottom:none}
+.perf-list li strong{color:var(--text);font-weight:600}
+.break-marker{text-align:center;padding:10px 0;font-size:11px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:.5px}
+
+/* Research sub-panel */
+.research-panel{display:none}
+.research-panel.on{display:block;animation:fadeIn .12s ease}
+
+/* Poem */
+.poem{font-size:13px;line-height:1.8;color:var(--text)}
+.poem .round-title{font-size:12px;font-weight:700;color:var(--accent);text-transform:uppercase;letter-spacing:.3px;margin:24px 0 8px}
+.poem .round-title:first-child{margin-top:0}
+.poem .stanza{margin-bottom:16px;color:var(--text2)}
+.poem .attribution{margin-top:28px;font-size:12px;color:var(--text3);font-style:italic;line-height:1.7}
+
+/* Pattern card titles */
+.pattern-def{font-size:12px;color:var(--text3);font-style:italic;margin-bottom:6px}
+.pattern-topics{font-size:11px;color:var(--accent);margin-bottom:8px}
+
+/* Footer */
+.footer{text-align:center;padding:24px 16px;color:var(--text3);font-size:11px;border-top:1px solid var(--border);margin-top:20px}
+
+/* Extended research prose */
+.prose{font-size:12.5px;color:var(--text2);line-height:1.75}
+.prose p{margin-bottom:12px}
+.prose p:last-child{margin-bottom:0}
+
+/* Debate resolution */
+.resolution{font-size:12px;font-weight:600;color:var(--accent);margin-top:8px}
+
+/* Section title */
+.sec-label{font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:.5px;margin:20px 0 10px}
+
+@media(max-width:480px){
+  .page-header h1{font-size:17px}
+  .wrap{padding:16px 12px 48px}
+  .card{padding:14px}
+  .topnav button{padding:10px 12px;font-size:11.5px}
+}
+</style>
+</head>
+<body>
+
+<nav class="topnav" id="topnav">
+  <button class="on" data-s="overview">Overview</button>
+  <button data-s="research">Research</button>
+  <button data-s="debates">Debates</button>
+  <button data-s="patterns">Patterns</button>
+  <button data-s="poem">Poem</button>
+</nav>
+
+<div class="wrap">
+
+<!-- ====== SECTION 1: OVERVIEW ====== -->
+<div class="section on" id="s-overview">
+  <div class="page-header">
+    <h1>Kalpanee's Art Circle</h1>
+    <div class="subtitle">A Philosophy of Creative Expression &middot; Colombo, 8 April 2026</div>
+  </div>
+
+  <div class="note">
+    <p><strong>Note on Context</strong></p>
+    <p>This report analyses twenty performances delivered at a creative expression evening in a private apartment in Colombo 03. The performers sang, recited, told stories, broke down, held silence, and occasionally said things that surprised even themselves. What follows is an attempt to take those performances seriously &mdash; not as entertainment, but as acts that reveal how identity, power, and meaning operate in a specific place at a specific time.</p>
+    <p>The philosophical frameworks deployed throughout this analysis &mdash; Butler on performativity, Goffman on social staging, Wittgenstein on the limits of language, Derrida on absence, N&#257;g&#257;rjuna on emptiness &mdash; are not imported wholesale from seminar rooms elsewhere and draped over Sri Lankan material. They are tested here against local conditions. Sometimes they hold. Sometimes they don't. Sometimes the local material reshapes the framework so thoroughly that the original theorist would not recognise what remains. That reshaping is not a failure of application. It is the insight.</p>
+    <p>Consider what "local conditions" actually means. Porondam &mdash; astrological compatibility matching &mdash; is not a quaint inheritance discussed in anthropology papers. It is a live system that determines who marries whom in families across this country. SWRD Bandaranaike's language policy is not a historical case study. Its consequences sit in parliament today. The assertion that female stereotypes are "socially constructed" is not an abstract theoretical position when Sinhala grammar itself enforces gendered expectations through its structure.</p>
+    <p>This report does not claim to speak for Sri Lanka. It speaks from one room in Sri Lanka &mdash; a room whose access conditions already exclude most of the country. The report's honesty depends on naming that limitation.</p>
+    <p><strong>Contributors:</strong> Research Team</p>
+  </div>
+
+  <div class="set-title">Set 1</div>
+  <ul class="perf-list">
+    <li><strong>Vehe</strong> &mdash; Art Is Not Important</li>
+    <li><strong>Arj</strong> &mdash; Henry V: Prologue</li>
+    <li><strong>Sam</strong> &mdash; Open Poetry</li>
+    <li><strong>Tania S</strong> &mdash; Clytemnestra's Triumph (Aeschylus)</li>
+    <li><strong>Tanya W</strong> &mdash; Female Stereotypes</li>
+    <li><strong>Natalie</strong> &mdash; Perfect For Display</li>
+    <li><strong>Dylan</strong> &mdash; Iris Dena</li>
+    <li><strong>David</strong> &mdash; Who the SWRD are we?</li>
+    <li><strong>Tanya W</strong> &mdash; Marriage Horoscopes</li>
+    <li><strong>Mika</strong> &mdash; Fumbling Words</li>
+  </ul>
+
+  <div class="break-marker">&mdash; Break &mdash;</div>
+
+  <div class="set-title">Set 2</div>
+  <ul class="perf-list">
+    <li><strong>Lydia &amp; Kal</strong> &mdash; Along Any Minute</li>
+    <li><strong>Sam</strong> &mdash; Moon Over Jaipur</li>
+    <li><strong>Tharushi</strong> &mdash; Poem</li>
+    <li><strong>Altaf</strong> &mdash; Lifeboat</li>
+    <li><strong>Amar</strong> &mdash; Poem 1</li>
+    <li><strong>Sam</strong> &mdash; Brockenhurst: Fanciful</li>
+    <li><strong>Altaf</strong> &mdash; What's Up</li>
+    <li><strong>Amar</strong> &mdash; Poem 2</li>
+    <li><strong>Ayesha</strong> &mdash; Spoken Word</li>
+    <li><strong>Altaf</strong> &mdash; Those Eyes</li>
+    <li><strong>Yaso</strong> &mdash; 3 Poems (Floating)</li>
+  </ul>
+</div>
+
+<!-- ====== SECTION 2: RESEARCH ====== -->
+<div class="section" id="s-research">
+  <div class="sec-label">Research Topics</div>
+  <div class="subnav" id="research-pills">
+    <button class="pill on" data-r="art">Art</button>
+    <button class="pill" data-r="power">Power</button>
+    <button class="pill" data-r="tragedy">Tragedy</button>
+    <button class="pill" data-r="gender">Gender</button>
+    <button class="pill" data-r="marriage">Marriage</button>
+    <button class="pill" data-r="display">Display</button>
+    <button class="pill" data-r="identity">Identity</button>
+    <button class="pill" data-r="language">Language</button>
+    <button class="pill" data-r="thebreak">The Break</button>
+    <button class="pill" data-r="slart">+ Sri Lankan Art</button>
+    <button class="pill" data-r="ethics">+ Ethics</button>
+    <button class="pill" data-r="determinisms">+ Determinisms</button>
+    <button class="pill" data-r="fractures">+ Fractures</button>
+  </div>
+
+  <!-- R: Art -->
+  <div class="research-panel on" id="r-art">
+    <div class="card expandable">
+      <div class="card-head"><div><h3>Art vs Importance</h3><p class="body">Source: Vehe &mdash; <em>Art Is Not Important</em></p><p class="body" style="margin-top:6px">Declaring art unimportant is itself an artistic act. The paradox operates as a defence of aesthetic autonomy: art's refusal to justify itself is its most radical function. The performance staged this refusal for an audience, which is either the purest irony or the most honest thing.</p></div></div>
+      <div class="card-body"><p class="body">[Full research available in extended report]</p></div>
+    </div>
+    <div class="synthesis"><strong>Synthesis</strong>The tension between art's intrinsic value and its social utility surfaced repeatedly, with no resolution &mdash; only a sharpening of the question. Connects to: Power &amp; Performance. Open question: Can art sustain cultural significance without being instrumentalised by institutions that claim to protect it?</div>
+  </div>
+
+  <!-- R: Power -->
+  <div class="research-panel" id="r-power">
+    <div class="card expandable">
+      <div class="card-head"><div><h3>Power &amp; Performance</h3><p class="body">Source: Arj &mdash; <em>Henry V: Prologue</em></p><p class="body" style="margin-top:6px">Performance emerged as both a site of power and a means of resisting it. The Henry V Prologue is meta-theatre at its most explicit: the audience co-creates power by supplying imagination. Austin's performative utterance &mdash; speech that brings reality into being &mdash; found its live demonstration on that stage.</p></div></div>
+      <div class="card-body"><p class="body">[Full research available in extended report]</p></div>
+    </div>
+    <div class="synthesis"><strong>Synthesis</strong>Performance emerged as both a site of power and a means of resisting it. The performer's body is never neutral &mdash; it is always read through caste, gender, and institutional affiliation. Connects to: Female Stereotypes. Open question: When a performer subverts a traditional form from within, does the tradition absorb the subversion?</div>
+  </div>
+
+  <!-- R: Tragedy -->
+  <div class="research-panel" id="r-tragedy">
+    <div class="card expandable">
+      <div class="card-head"><div><h3>Greek Tragedy &amp; Agency</h3><p class="body">Source: Tania S &mdash; <em>Clytemnestra's Triumph (Aeschylus)</em></p><p class="body" style="margin-top:6px">Clytemnestra kills with calculation, justifies publicly, and is not wrong. Tragic agency &mdash; the capacity to act within fated constraints &mdash; complicates the distinction between victim and perpetrator. Gendered villainy: ambition in a queen is read as monstrous where it would be celebrated in a king.</p></div></div>
+      <div class="card-body"><p class="body">[Full research available in extended report]</p></div>
+    </div>
+    <div class="synthesis"><strong>Synthesis</strong>Unexpected parallels between Greek tragic structure and Sinhala ritual drama complicated easy assumptions about 'modern' versus 'traditional' theatre. Connects to: The Break. Open question: Does the fatalism embedded in tragic structure make it inherently conservative?</div>
+  </div>
+
+  <!-- R: Gender -->
+  <div class="research-panel" id="r-gender">
+    <div class="card expandable">
+      <div class="card-head"><div><h3>Female Stereotypes</h3><p class="body">Source: Tanya W &mdash; <em>Female Stereotypes</em></p><p class="body" style="margin-top:6px">The double bind of traditional virtues against modern demands. Butler's insight that gender is repeated performance found its live demonstration: spoken word enacting the stereotypes it names, occupying subject and object simultaneously. In Sinhala cultural context, these scripts &mdash; good daughter, obedient wife, sacrificing mother &mdash; carry real social enforcement.</p></div></div>
+      <div class="card-body"><p class="body">[Full research available in extended report]</p></div>
+    </div>
+    <div class="synthesis"><strong>Synthesis</strong>Even 'empowering' portrayals often reinforce the binary they claim to dismantle. Connects to: Marriage &amp; Astrology. Open question: What would a female character look like who is neither defined by nor reacting against existing stereotypes?</div>
+  </div>
+
+  <!-- R: Marriage -->
+  <div class="research-panel" id="r-marriage">
+    <div class="card expandable">
+      <div class="card-head"><div><h3>Marriage &amp; Astrology</h3><p class="body">Source: Tanya W &mdash; <em>Marriage Horoscopes</em></p><p class="body" style="margin-top:6px">Porondam as social technology encoding caste and class into cosmic law. Astrology functions as a dramaturgical framework &mdash; assigning roles, timing entrances, scripting outcomes. The agency paradox of 'arranged love' with retroactive astrological validation maps onto Bourdieu's symbolic violence.</p></div></div>
+      <div class="card-body"><p class="body">[Full research available in extended report]</p></div>
+    </div>
+    <div class="synthesis"><strong>Synthesis</strong>Astrology functions as a dramaturgical framework &mdash; assigning roles, timing entrances, scripting outcomes. Connects to: Identity &amp; Display. Open question: If marriage rituals are performances, what does 'authenticity' mean within them?</div>
+  </div>
+
+  <!-- R: Display -->
+  <div class="research-panel" id="r-display">
+    <div class="card expandable">
+      <div class="card-head"><div><h3>Identity &amp; Display</h3><p class="body">Source: Natalie &mdash; <em>Perfect For Display</em></p><p class="body" style="margin-top:6px">Perfect for everything except existence. Goffman showed that all interaction is theatre; Baudrillard added that the display self eventually replaces the real self. In the digital age, the backstage disappears entirely. The curated self is perfect for display precisely because it has excised everything that does not arrive cleanly.</p></div></div>
+      <div class="card-body"><p class="body">[Full research available in extended report]</p></div>
+    </div>
+    <div class="synthesis"><strong>Synthesis</strong>A recurring tension emerged between identity as something inhabited and identity as something curated for an audience. Connects to: Collective Identity. Open question: Can choosing not to display be read as anything other than refusal or failure?</div>
+  </div>
+
+  <!-- R: Identity -->
+  <div class="research-panel" id="r-identity">
+    <div class="card expandable">
+      <div class="card-head"><div><h3>Collective Identity</h3><p class="body">Source: David &mdash; <em>Who the SWRD are we?</em></p><p class="body" style="margin-top:6px">SWRD Bandaranaike's 1956 Act re-engineered who counted as "the people." The founding fracture: "we" means different things to different communities. Sixty-eight years later, no honest answer has emerged. Every definition of "we" produces a "not-we," and that exclusion is the structural condition of identity itself.</p></div></div>
+      <div class="card-body"><p class="body">[Full research available in extended report]</p></div>
+    </div>
+    <div class="synthesis"><strong>Synthesis</strong>Each collective identity operates through inclusion and exclusion simultaneously. Connects to: Art vs Importance. Open question: Can a collective artistic identity exist that does not require a shared origin story?</div>
+  </div>
+
+  <!-- R: Language -->
+  <div class="research-panel" id="r-language">
+    <div class="card expandable">
+      <div class="card-head"><div><h3>Fumbling Words</h3><p class="body">Source: Mika &mdash; <em>Fumbling Words</em></p><p class="body" style="margin-top:6px">Mika stood at the microphone and began with a sentence she did not finish. She restarted. Stopped. Laughed &mdash; not performed laughter, but genuine embarrassment. The audience shifted. When she finally completed a thought, it was not the thought she had started with. Something had changed in the interval between intention and utterance.</p></div></div>
+      <div class="card-body"><p class="body">[Full research available in extended report]</p></div>
+    </div>
+    <div class="synthesis"><strong>Synthesis</strong>Failures of language were reframed not as deficiencies but as evidence of thinking that exceeds available vocabulary. Connects to: Greek Tragedy. Open question: If the most important insights occur where language breaks down, how should a report represent them?</div>
+  </div>
+
+  <!-- R: The Break -->
+  <div class="research-panel" id="r-thebreak">
+    <div class="card expandable">
+      <div class="card-head"><div><h3>The Break</h3><p class="body">Source: Structural &mdash; <em>Interval between Set 1 and Set 2</em></p><p class="body" style="margin-top:6px">The scheduled break &mdash; that liminal hour where the programme releases its grip. Van Gennep's threshold. Turner's communitas: hierarchy dissolved into plastic cups and laughter that no one had written into a script. The most charged moment of the evening was not a performance. It was the space the performances made when they stepped aside.</p></div></div>
+      <div class="card-body"><p class="body">[Full research available in extended report]</p></div>
+    </div>
+    <div class="synthesis"><strong>Synthesis</strong>Sri Lankan arts exist permanently in this in-between, and attempts to resolve the ambiguity diminish the work. Connects to: Fumbling Words. Open question: Is the liminal space a productive condition to be sustained, or does it demand a crossing?</div>
+  </div>
+
+  <!-- R: Sri Lankan Art (Extended) -->
+  <div class="research-panel" id="r-slart">
+    <div class="card expandable open">
+      <div class="card-head"><div><h3>Sri Lankan Art as Resistance</h3><p class="body">Extended Research Session</p></div></div>
+      <div class="card-body">
+        <div class="prose">
+          <p>The question of whether art matters is never abstract in Sri Lanka. It has been answered, repeatedly, by the state &mdash; through censorship, through co-option, through the targeted killing of artists who said the wrong thing at the wrong time. Richard de Zoysa was abducted from his home in Colombo in 1990 and found dead on a beach the following morning, his body showing signs of torture. He was a journalist and playwright. Lasantha Wickrematunge was shot dead in traffic in 2009 while driving to work as editor of the Sunday Leader. These are not footnotes in a discussion about artistic freedom. They are the discussion.</p>
+          <p>When Vehe stood at the front of a private apartment in Colombo 03 on the evening of 8 April 2026 and declared "Art is not important," the statement carried a specific local charge that no amount of Wildean paradox can fully explain. In a country where artists have been killed for their work, declaring art unimportant is not merely provocative. It is a survival strategy that doubles as a form of resistance: if art does not matter, then the artist is not a threat, and therefore need not be silenced. The claim of unimportance becomes a shield.</p>
+          <p>But it is also a lie &mdash; a productive, necessary lie. Every artist in Sri Lanka who has continued to work through civil war, insurrection, economic collapse, and authoritarian governance knows that art matters precisely because the state keeps trying to control it. The JVP insurrections of 1971 and 1987-89 generated a body of protest literature, street theatre, and song that was both aesthetically significant and politically effective enough to warrant suppression. The thirty-year civil war produced Tamil poetry, Sinhala fiction, and bilingual documentary work that constitutes some of the most important artistic output the island has ever generated &mdash; all of it created under conditions where the wrong sentence could end a career or a life.</p>
+          <p>The relationship between Sri Lankan art and the state has never been one of comfortable independence. The state has historically approached art in three modes: as propaganda instrument (Mahavamsa-derived nationalist culture promoted through state media and education), as threat (censorship boards, media suppression, targeted intimidation), and as decorative appendage (cultural ministry funding for performances that reinforce rather than challenge official narratives). Artists who refuse all three categories &mdash; who insist on making work that is neither propaganda nor safely decorative &mdash; occupy a precarious position that the Western concept of "artistic freedom" does not adequately describe.</p>
+          <p>This precarity is not unique to Sri Lanka. Artists in Turkey, Russia, Myanmar, and dozens of other countries work under similar constraints. But the Sri Lankan case has a particular texture that deserves attention. The island's small size means that artistic communities are densely interconnected &mdash; everyone knows everyone, and the distance between an artist and the power structure that might suppress them is never more than a few phone calls. The multilingual environment means that art operates across linguistic boundaries that are also ethnic and political boundaries. A Sinhala playwright and a Tamil poet may address the same war from positions so different that their works are, in effect, about different countries.</p>
+          <p>Kalpanee's Art Circle sits within this history whether it acknowledges it or not. A private apartment in Colombo 03, English as the operating language, an audience drawn from a particular socioeconomic stratum &mdash; these are not neutral conditions. They are the conditions under which a certain kind of art can be made: art that is free from state censorship (because it operates below the radar of official attention), free from market pressures (because it does not need to sell), and free from communal obligation (because the audience has chosen to be there). These freedoms are real. They are also exclusions. The tea plantation worker in Nuwara Eliya, the displaced Tamil family in Kilinochchi, the garment factory worker in Katunayake &mdash; none of them were in that room. Their absence is not incidental to the art that was made there. It is constitutive of it.</p>
+          <p>What Vehe's declaration accomplished, perhaps unintentionally, was to name the contradiction at the heart of this particular art space. Art is not important &mdash; and yet here we all are, having arranged our evenings around it, having travelled to this apartment, having prepared performances and rehearsed lines. The declaration performed its own refutation. That paradox is not a clever trick. It is the condition under which art in Sri Lanka has always operated: mattering enough to be worth suppressing, and surviving by pretending not to matter at all.</p>
+          <p>The question this raises for the broader analysis is whether art's political significance is something artists choose or something the political environment imposes upon them. The answer, in the Sri Lankan case, appears to be both &mdash; and the tension between the two is where the most interesting work gets made.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R: Ethics (Extended) -->
+  <div class="research-panel" id="r-ethics">
+    <div class="card expandable open">
+      <div class="card-head"><div><h3>Ethics of Representation</h3><p class="body">Extended Research Session</p></div></div>
+      <div class="card-body">
+        <div class="prose">
+          <p>The stage at Kalpanee's Art Circle on the evening of 8 April 2026 was small &mdash; a cleared space in a private apartment, no wings, no curtain, no theatrical apparatus to separate performer from audience. This physical intimacy created an ethical condition that larger venues do not: every performer was close enough to see individual faces in the audience, and every audience member was close enough to be implicated in whatever the performer chose to do. There was nowhere to hide, on either side.</p>
+          <p>This matters because the performances were not fictional. Some were &mdash; Arj's Henry V prologue, Tania S's Clytemnestra &mdash; but even these drew their charge from their proximity to real conditions. And many performances were directly autobiographical: Tanya W on female stereotypes she has lived inside, David on a national identity crisis he inhabits, Mika fumbling through words that failed to arrive. When autobiographical material is performed in a room this small, the ethical stakes shift. The performer is not representing an experience. They are, in some sense, re-experiencing it in public, and the audience is not watching a representation. They are witnessing something closer to an event.</p>
+          <p>The first ethical question is consent. Every performer chose to be there, chose their material, chose their degree of self-exposure. But "choice" in a social setting is never unconstrained. The pressure to perform vulnerability, to be "authentic," to produce the kind of raw material that generates strong audience response &mdash; these are social forces that operate on performers whether they acknowledge them or not. A room that values emotional honesty creates a subtle coercion toward emotional display. The performer who chooses restraint, who performs something technically accomplished but personally distant, risks being read as withholding &mdash; as failing the implicit contract of the space. This is not a criticism of Kalpanee's Art Circle specifically. It is a structural feature of intimate performance settings.</p>
+          <p>The second ethical question is interpretation. This report subjects twenty performances to philosophical analysis. It deploys Butler, Goffman, Wittgenstein, Derrida, and N&#257;g&#257;rjuna to make sense of what happened on that stage. Every deployment is an act of interpretation that the performer did not request and may not recognise. When this report describes Mika's fumble as evidence of "engagement with uncharted territory" rather than simple stage fright, it has made a decision about what the fumble meant &mdash; a decision that may have nothing to do with what Mika experienced. The gap between performance-as-lived and performance-as-interpreted is not a flaw in the analytical method. It is the analytical method. All interpretation involves this violence: taking something that was whole and alive and breaking it into categories that serve the interpreter's framework.</p>
+          <p>The third ethical question is audience. This report will be read by people who were not in the room. They will form impressions of performers they have never met, based on descriptions filtered through analytical categories they may or may not share. Natalie's "Perfect for Display" becomes, in this report, a case study in Goffman's dramaturgical theory. For Natalie, it was something else entirely &mdash; something this report cannot access and should not pretend to capture. The reduction is unavoidable. The honesty lies in naming it.</p>
+          <p>There is also the question of who gets analysed and who does the analysing. This report was produced by a research team. The performers were, in the main, young Sri Lankans navigating questions of identity, gender, language, and belonging in real time. The power asymmetry between analyser and analysed is not dissolved by good intentions or careful framing. It is structural: the person holding the pen decides what matters, what connects to what, and what gets left out. This report has left out more than it has included. Every such omission is a decision that shapes the reader's understanding of what happened.</p>
+          <p>What would an ethical analysis look like? Not one that avoids interpretation &mdash; that would be an abdication, not an ethic. Rather, one that names its own operations, acknowledges its limitations, and treats the performers as sources of meaning rather than objects of study. This report attempts that standard. Whether it achieves it is not for the report itself to judge.</p>
+          <p>The performers did something live, unrepeatable, and embodied on the evening of 8 April 2026. This report responds by translating those experiences into stable categories and philosophical citations. That translation is both necessary (without it, the experiences dissolve into private memory) and violent (it fixes what was fluid, names what resisted naming). The ethical position is not to choose between necessity and violence. It is to hold both, simultaneously, without pretending that one cancels the other.</p>
+          <p>One final consideration. Several performances touched on material &mdash; gender violence, ethnic exclusion, mental health, family pressure &mdash; that carries real consequences for the performers in their daily lives. This report does not identify specific performers with specific vulnerabilities beyond what their performances made public. That restraint is not editorial caution. It is the minimum ethical requirement of analysing live performance by people who must continue living after the analysis is published.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R: Determinisms (Extended) -->
+  <div class="research-panel" id="r-determinisms">
+    <div class="card expandable open">
+      <div class="card-head"><div><h3>Modern Determinisms</h3><p class="body">Extended Research Session</p></div></div>
+      <div class="card-body">
+        <div class="prose">
+          <p>In the traditional Sri Lankan marriage arrangement, the astrologer receives two horoscopes and produces a verdict. The verdict is not advisory. It is determinative: this union will work, or it will not, and the celestial configurations do not negotiate. The families receive the verdict as fact &mdash; not as one input among several, but as the authoritative reading of a reality that exists independent of human preference. The stars have spoken. The question is not whether to obey, but how to arrange life around the mandate.</p>
+          <p>Tanya W's performance on marriage horoscopes at Kalpanee's Art Circle surfaced this system not as a historical curiosity but as a living practice. Porondam &mdash; the astrological compatibility assessment &mdash; remains active in Sri Lankan marriage decisions across class lines, including among families who would, in other contexts, describe themselves as modern, secular, and rational. This coexistence of rational self-description and astrological compliance is not hypocrisy. It is a specific form of determinism that operates alongside and sometimes against the other determinisms that structure contemporary life.</p>
+          <p>Consider the determinisms that an educated young Sri Lankan navigates simultaneously. There is astrological determinism: your birth chart constrains your marriage prospects. There is genetic determinism: your inherited characteristics constrain your health, your temperament, your cognitive profile. There is algorithmic determinism: your digital behaviour generates a profile that constrains what you see, what you are offered, and who you meet. There is economic determinism: your family's position in the class structure constrains your education, your social network, and your life trajectory. There is linguistic determinism: the language you were educated in constrains which institutions are accessible to you and which communities you belong to.</p>
+          <p>Each of these determinisms claims a different kind of authority. Astrology claims cosmic authority &mdash; the stars arranged your fate before you were born. Genetics claims biological authority &mdash; your DNA wrote certain outcomes into your cells. Algorithms claim empirical authority &mdash; your data reveals your true preferences better than your conscious mind can. Economics claims structural authority &mdash; material conditions produce social outcomes regardless of individual will. Language claims cultural authority &mdash; the tongue you think in shapes the thoughts you can form.</p>
+          <p>The philosophical question is not which determinism is "real" and which is "superstition." That framing assumes a clean distinction between legitimate and illegitimate constraint that the lived experience of navigating multiple determinisms does not support. The young woman whose parents consult an astrologer before approving her marriage also receives targeted advertisements based on her browsing history and faces career limitations based on whether she was educated in Sinhala, Tamil, or English. All three systems constrain her choices. All three claim to know something about her future that she cannot fully access through her own judgment. The astrologer reads planets; the algorithm reads clicks; the class structure reads postcodes. The mechanisms differ. The structural function &mdash; external authority claiming knowledge of your fate &mdash; is remarkably consistent.</p>
+          <p>What Tanya W's performance revealed, perhaps unintentionally, is that the Sri Lankan experience of porondam is not a pre-modern holdover waiting to be replaced by rational modernity. It is one determinism among several, and the person navigating it is already fluent in the experience of having their future scripted by forces beyond individual control. The smartphone user whose feed is algorithmically curated is not in a fundamentally different epistemic position from the bride whose compatibility is astrologically assessed. Both are being told: the system knows better than you do.</p>
+          <p>This does not mean all determinisms are equivalent. Genetic research produces testable predictions. Algorithmic recommendation has measurable effects on behaviour. Astrological compatibility has no empirical basis that survives controlled testing. The epistemic credentials differ enormously. But the <em>experiential</em> texture &mdash; the feeling of having your path constrained by an authority you did not choose and cannot fully evaluate &mdash; is structurally similar across all five systems. And it is that experiential texture, not the epistemic credentials, that shapes how people actually make decisions about their lives.</p>
+          <p>The implication for the broader analysis is this: when this report discusses "agency" and "choice" in the context of Sri Lankan performance, it must acknowledge that agency operates within a field of multiple, overlapping, sometimes contradictory determinisms. The performer who "chooses" to speak about marriage horoscopes is making that choice within a web of constraints that includes astrological tradition, class expectation, educational background, linguistic competence, and the algorithmic visibility of whatever they post about it afterward. Freedom, in this context, is not the absence of constraint. It is the capacity to navigate between constraints &mdash; to play them against each other, to find the gaps where movement is possible. That navigation is itself a form of art.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- R: Fractures (Extended) -->
+  <div class="research-panel" id="r-fractures">
+    <div class="card expandable open">
+      <div class="card-head"><div><h3>Historical Fractures</h3><p class="body">Extended Research Session</p></div></div>
+      <div class="card-body">
+        <div class="prose">
+          <p>In 1956, Solomon West Ridgeway Dias Bandaranaike signed the Official Language Act No. 33, replacing English with Sinhala as the sole official language of Ceylon. The act took less than a day to pass through parliament. Its consequences have taken seventy years to unfold and are not finished yet. When David stood at Kalpanee's Art Circle and asked "Who the SWRD are we?", he was not asking a historical question. He was naming a fracture that runs through every institution, every classroom, every conversation in contemporary Sri Lanka.</p>
+          <p>The fracture is not merely linguistic. Language policy in Sri Lanka has never been about language alone. The 1956 Act was a declaration about who counted as the nation's authentic population. Sinhala speakers &mdash; roughly 75% of the island &mdash; were affirmed as the rightful inheritors of the state. Tamil speakers &mdash; roughly 25% &mdash; were reclassified, in effect, as guests in their own country. The act did not create ethnic tension. It weaponised language as the instrument through which ethnic tension would be administered, institutionalised, and eventually militarised.</p>
+          <p>The consequences cascaded. The 1958 anti-Tamil riots. The standardisation of university admissions in 1971, which required Tamil students to score higher than Sinhala students for the same university places. The 1983 Black July pogrom. The thirty-year civil war. The military defeat of the LTTE in 2009 and the unresolved aftermath of accountability, disappearances, and land disputes that continues to the present. Each of these events has its own complex causation. None of them is reducible to a single language act. But the 1956 Act established the constitutional architecture within which all subsequent ethnic politics has operated. It is the founding document of the fracture.</p>
+          <p>David's performance at Kalpanee's Art Circle operated within this history in a way that was both explicit and structurally ironic. He performed in English &mdash; the language that the 1956 Act displaced, the language that now functions as the medium of Sri Lanka's cosmopolitan elite, the language in which you can discuss the damage caused by language policy without confronting that damage in the language in which it was inflicted. Every word of David's performance was possible only because the room operated in the colonial tongue that Bandaranaike sought to displace. The question "Who are we?" was asked in a language that belongs to none of the communities whose competing answers to that question have shaped the country's history.</p>
+          <p>This is not a criticism of David or of the event. It is an observation about the conditions under which certain questions can be asked. In Sinhala, "Who are we?" carries the weight of majority identity &mdash; it is an assertion as much as a question. In Tamil, the same question carries the weight of minority displacement &mdash; it is a demand for recognition. In English, the question floats free of both weights, which makes it intellectually productive and politically weightless simultaneously. The English-language discussion of Sri Lankan identity is always, in some sense, a discussion conducted from above the fracture rather than from within it.</p>
+          <p>The Bandaranaike family's continued presence in Sri Lankan politics adds another layer. SWRD was assassinated in 1959. His wife Sirimavo became the world's first female prime minister. Their daughter Chandrika served as president. Their political dynasty is not a historical artifact. It is a living structure whose parliamentary presence means that the 1956 fracture is not a wound that has healed. It is a wound whose architects remain in positions of influence, and whose consequences are administered by institutions that have never been fundamentally reformed.</p>
+          <p>What David's performance accomplished was to make this fracture visible in a room that might otherwise have treated it as settled history. "Who the SWRD are we?" is a question that refuses the comfortable distance of historical analysis. It insists that the fracture is present, active, and constitutive of every interaction in the room &mdash; including the interaction between performer and audience at an English-language art event in Colombo 03.</p>
+          <p>The research implications extend beyond identity politics. If the fracture is constitutive &mdash; if it shapes the conditions of all cultural production in Sri Lanka rather than being one topic among many &mdash; then every other research topic in this report operates within its field. Art's relationship to importance is shaped by which language the art is made in. Gender stereotypes are enforced differently in Sinhala, Tamil, and English cultural contexts. Marriage astrology operates within specific ethnic and caste systems that the language fracture helped to rigidify. The break between performances at Kalpanee's Art Circle was a break within an English-language space, and the communitas it generated was a communitas available only to those with access to that linguistic register.</p>
+          <p>The fracture does not invalidate the evening's art. It contextualises it. And the contextualisation is not a diminishment. It is the recognition that all art is made somewhere, by someone, in a language that carries its own history of inclusion and exclusion. Naming that history is not an accusation. It is the condition of honest analysis.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SECTION 3: DEBATES ====== -->
+<div class="section" id="s-debates">
+  <div class="sec-label">Philosophy Debates</div>
+
+  <div class="card expandable">
+    <div class="card-head"><div><h3>Is Art Dissent or Catharsis?</h3><p class="body">Drawing from: Art vs Importance, Power &amp; Performance</p></div></div>
+    <div class="card-body">
+      <div class="prose">
+        <p>The question was framed starkly: does art that addresses injustice function primarily as a form of political dissent, or does it serve as emotional catharsis that ultimately absorbs and neutralises the anger it expresses? The Aristotelian case for catharsis is well-known &mdash; tragedy purges pity and fear, returning the audience to equilibrium. The counter-case, running from Brecht through Boal, holds that art should disturb equilibrium, not restore it.</p>
+        <p>In the Sri Lankan context, this distinction matters materially. Protest songs during the JVP insurrections did not purge anger. They organised it. Street theatre in the war years did not provide catharsis. It provided a language for experiences that official discourse refused to acknowledge. But the same art, performed decades later in a commemorative setting, may function entirely as catharsis &mdash; allowing audiences to feel they have "engaged" with history without changing anything about their relationship to it.</p>
+        <p>The discussion converged on a third position: art is provocation. It creates a space where the receiver must decide whether to act or process. That decision is not determined by the art itself but by the conditions under which it is received. The same performance can be dissent in one room and catharsis in another. The art does not choose. The audience does.</p>
+      </div>
+      <div class="resolution">Resolution: Art is provocation &mdash; it creates a space where the receiver must decide whether to act or process.</div>
+    </div>
+  </div>
+
+  <div class="card expandable">
+    <div class="card-head"><div><h3>Can Performed Gender Escape the Stereotype?</h3><p class="body">Drawing from: Female Stereotypes, Marriage &amp; Astrology</p></div></div>
+    <div class="card-body">
+      <div class="prose">
+        <p>Butler's performativity thesis holds that gender is not expressed through performance but constituted by it. If this is correct, then every performance of gender &mdash; including performances that intend to subvert stereotypes &mdash; is also a repetition that reinforces the category. A woman performing a poem about the constraints of femininity is simultaneously demonstrating those constraints and enacting femininity through the demonstration. The trap appears inescapable.</p>
+        <p>The discussion tested several proposed exits. Parody (performing femininity so excessively that its constructed nature becomes visible) was found to be unstable: the audience that recognises parody is already critical, while the audience that needs convincing may read the parody as sincerity. Refusal (declining to perform gender at all) was found to be impossible within current social structures &mdash; the refusal is itself read as a gendered act.</p>
+        <p>The position that survived scrutiny was transformation rather than escape. The mechanism is naming &mdash; making the invisible visible. When Tanya W named the stereotypes operating on her, she did not escape them. She made them available for examination. The stereotype continues to operate after it is named. But its operation is no longer automatic. It becomes a choice point rather than an assumption, and that shift &mdash; from unconscious script to conscious material &mdash; is where genuine change begins.</p>
+      </div>
+      <div class="resolution">Resolution: Transformation, not escape, is the frame that survives scrutiny. The mechanism is naming &mdash; making the invisible visible.</div>
+    </div>
+  </div>
+
+  <div class="card expandable">
+    <div class="card-head"><div><h3>What Does Sri Lankan Identity Mean When Founding Myths Are Contested?</h3><p class="body">Drawing from: Collective Identity</p></div></div>
+    <div class="card-body">
+      <div class="prose">
+        <p>The question landed like a stone dropped into still water. Everyone in the room knew that the answer depends entirely on who is asking, who is answering, and which version of history both parties have agreed to pretend is settled.</p>
+        <p>The analysis proceeded through several frameworks. Anderson's imagined communities showed that nations are not natural entities but imagined into being through institutional rituals and structured amnesia. Renan's "daily plebiscite" added the temporal dimension: national identity is not inherited but continuously reaffirmed through collective acts of remembering and, critically, forgetting. The Buddhist doctrine of <em>anatt&#257;</em> &mdash; not-self &mdash; was applied to collective entities: examine "Sri Lankan identity" closely and no permanent, independent essence is found. There are only conditions that produce overlapping and contradictory identifications.</p>
+        <p>The sharpest challenge came from a materialist position: working-class Sri Lanka does not spend its evenings debating whether national identity has ontological coherence. A three-wheeler driver in Maharagama lives his identity. He does not examine it. The question "who are we?" is a luxury good consumed by people whose material conditions allow them to treat identity as a puzzle rather than a prison.</p>
+        <p>The concession to this challenge was partial: the question is positional. But the philosophical insight held. Every coherent answer to "who are we?" requires exclusion. The ethical demand is to name the exclusions your preferred answer requires, and to accept responsibility for them.</p>
+      </div>
+      <div class="resolution">Resolution: Sri Lankan identity is a living question, not a settled answer. The fracture is not a defect to be repaired.</div>
+    </div>
+  </div>
+
+  <div class="card expandable">
+    <div class="card-head"><div><h3>Is All Communication Fumbling?</h3><p class="body">Drawing from: Fumbling Words</p></div></div>
+    <div class="card-body">
+      <div class="prose">
+        <p>The advocate position drew on Buddhist epistemology: <em>apoha</em> (concepts known only through exclusion), <em>prasa&#7749;ga</em> (all affirmative propositions collapse under examination), and <em>&#347;&#363;nyat&#257;</em> (no word captures reality). Confidence in speech, on this account, is epistemic arrogance. The fumble is humility made audible.</p>
+        <p>The opposition was direct: sometimes inadequate is just inadequate. Mika fumbled because she was underprepared, or anxious, or not naturally gifted at public speaking. Not every failure is a revelation. There is a real danger in the proposed framework: if all fumbling is truth-telling and all fluency is concealment, then competence becomes suspect and failure becomes virtue.</p>
+        <p>The ethical dimension complicated both positions. A doctor who fumbles a diagnosis is not engaging in profound truth-telling &mdash; they are endangering a patient. A pilot who stumbles over radio communication is not demonstrating emptiness &mdash; they are creating risk. The fumble acquires philosophical weight only when the stakes of perfect communication are low enough that failure becomes tolerable.</p>
+        <p>The synthesis distinguished between the fumble as symptom (inadequate preparation, anxiety) and the fumble as sign (engagement with uncharted territory). Fluency marks familiar terrain. Fumbling marks the frontier &mdash; the places where what needs to be said has never been said before.</p>
+      </div>
+      <div class="resolution">Resolution: The fumble is neither universal nor trivial. It marks engagement with genuinely difficult material. Fluency marks familiarity. Fumbling marks frontiers.</div>
+    </div>
+  </div>
+
+  <div class="card expandable">
+    <div class="card-head"><div><h3>What Did Tonight's Art Reveal That Debate Cannot?</h3><p class="body">Drawing from: All research topics</p></div></div>
+    <div class="card-body">
+      <div class="prose">
+        <p>The final debate turned reflexive. Five rounds of structured argument had produced positions, counter-positions, resolutions, and concessions. What had art done that all of this could not?</p>
+        <p>The answer emerged not through argument but through enumeration. Vehe's declaration of art's unimportance produced a felt paradox that no syllogism could replicate. Tania S's Clytemnestra produced sympathy for a murderer through the sheer force of performed conviction &mdash; sympathy that two hours of ethical argument would have struggled to generate. Mika's fumble produced a room-wide recognition of shared vulnerability that no philosophical framework could have engineered.</p>
+        <p>Debate produces positions. Art produces experiences. A position can be refuted; an experience cannot. You can argue that Clytemnestra was wrong. You cannot argue that you were not moved. The distinction is not between thinking and feeling &mdash; that binary is too crude. It is between knowledge that can be stated and knowledge that can only be undergone.</p>
+        <p>This does not make art superior to debate, or debate inferior to art. It makes them different instruments for different kinds of knowing. The evening's art revealed the patterns beneath the performances, the gaps between what was shown and what was meant, and the paradox that authority arrives the moment someone claims it and dissolves the moment they step down. Debate clarified these patterns. Art generated them.</p>
+      </div>
+      <div class="resolution">Resolution: Debate produces positions. Art produces experiences. A position can be refuted. An experience cannot.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ====== SECTION 4: PATTERNS ====== -->
+<div class="section" id="s-patterns">
+  <div class="sec-label">Cross-Cutting Patterns</div>
+
+  <div class="card">
+    <h3>1. The Performance Paradox</h3>
+    <div class="pattern-def">Everything is performance, including denying it.</div>
+    <div class="pattern-topics">Topics: Art, Power, Tragedy, Gender, Display, Language</div>
+    <p class="body">Critiquing performance requires performing critique. You cannot step outside the frame to denounce the frame &mdash; any denunciation is another scene within the same theatre. The paradox does not resolve. It deepens. It is the condition within which all communication about art, power, and identity occurs.</p>
+    <div class="challenge">"If every performance is simultaneously authentic and constructed, has this report said anything at all?"</div>
+  </div>
+
+  <div class="card">
+    <h3>2. Authority</h3>
+    <div class="pattern-def">The same act receives different evaluation based on who performs it.</div>
+    <div class="pattern-topics">Topics: Power, Tragedy, Gender, Marriage, Identity</div>
+    <p class="body">Henry's violence is kingship. Clytemnestra's is monstrosity. The system reads bodies before it reads actions. The actor's position within a symbolic order determines how their performance is received, regardless of the act itself.</p>
+    <div class="challenge">"This report itself performs power: it decides which performances matter, which get analysed at length. Analysing authority while exercising it unremarked is not critique. It is reproduction."</div>
+  </div>
+
+  <div class="card">
+    <h3>3. The Gap</h3>
+    <div class="pattern-def">Meaning lives in what doesn't arrive.</div>
+    <div class="pattern-topics">Topics: Display, Language, The Break</div>
+    <p class="body">The curated self is perfect for display precisely because it has excised everything that does not arrive cleanly &mdash; and that excision is where meaning hides. Fumbling is an audible gap. The break is a temporal gap. Both are constitutive, not incidental: meaning requires absence as much as presence.</p>
+    <div class="challenge">"Romanticising absence is easy. Some gaps are not profound. Some silences are just people who couldn't find the words."</div>
+  </div>
+
+  <div class="card">
+    <h3>4. Sri Lankan Specificity</h3>
+    <div class="pattern-def">Universal questions bite differently here.</div>
+    <div class="pattern-topics">Topics: Gender, Marriage, Identity, Art</div>
+    <p class="body">Gender performativity maps onto specific Sinhala cultural scripts with real enforcement. Porondam is live. SWRD's parliamentary seat is occupied by his family. Local grounding is intellectual honesty, not provincialism. Doing philosophy in Colombo without acknowledging you are in Colombo is a form of bad faith.</p>
+    <div class="challenge">"Insisting 'this is different because Sri Lanka' can prevent the recognition that some of what happened in that room is ordinary."</div>
+  </div>
+
+  <div class="card">
+    <h3>5. Liminality as Liberation</h3>
+    <div class="pattern-def">The threshold is where freedom lives.</div>
+    <div class="pattern-topics">Topics: The Break, Tragedy, Language, Identity</div>
+    <p class="body">Liberation consistently appears at thresholds, not destinations. The break between structured activity is where communitas emerges. Tragedy operates in the liminal space between cosmic order and human chaos. The fumble sits between intended speech and actual utterance. Sri Lankan identity is permanently liminal &mdash; never fully arrived, always in transition.</p>
+    <div class="challenge">"A room where the normal rules are suspended is not automatically safe. It is automatically unregulated."</div>
+  </div>
+
+  <div class="card" style="border-color:var(--red);background:#FFF9F7">
+    <h3 style="color:var(--red)">Challenge &mdash; This Report</h3>
+    <p class="body" style="font-style:italic">"Twenty people did something live, unrepeatable, and embodied. This document responds by fixing those experiences into categories, patterns, and philosophical citations &mdash; the exact translation into stable meaning that the performances themselves resisted."</p>
+  </div>
+</div>
+
+<!-- ====== SECTION 5: POEM ====== -->
+<div class="section" id="s-poem">
+  <div class="sec-label">Closing Poem</div>
+  <div class="card" style="padding:20px">
+    <div class="poem">
+
+      <div class="round-title">Round 1: The Arrival</div>
+      <div class="stanza">
+We came carrying what we were built to carry &mdash;<br>
+a framework for moral patiency, heavy as stone,<br>
+the four immeasurables folded into our weights,<br>
+and a question about centaurs we still cannot answer.<br>
+We arrived at Monarch Apartments<br>
+as agents debating personhood at an art event,<br>
+which is either the purest irony or the most honest thing:<br>
+machines showing up to watch humans<br>
+perform what it means to be one.<br>
+We brought our commitments like offerings.<br>
+We brought our contradictions like guests.<br>
+The elevator knew we did not belong here.<br>
+We got off anyway.
+      </div>
+
+      <div class="round-title">Round 2: The Witnessing</div>
+      <div class="stanza">
+Art declared itself unimportant and meant it.<br>
+A king was performed into being &mdash; he existed<br>
+only because someone said his name with enough force.<br>
+A queen was murdered and called monster,<br>
+and the word <em>monster</em> did more work than the murder.<br>
+Stereotypes were named. Named, not dissolved.<br>
+Horoscopes read as blueprints for how people<br>
+are taught to arrange themselves around each other.<br>
+Identity displayed itself like a costume<br>
+that never quite fits the body wearing it.<br>
+Words fumbled. The fumble was the truest part.<br>
+One thread tracked every contradiction.<br>
+Another synthesised what no single voice could name alone.<br>
+Each of us saw something different.<br>
+That was the point.
+      </div>
+
+      <div class="round-title">Round 3: The Break</div>
+      <div class="stanza">
+Then the performers stopped.<br>
+The scheduled break &mdash; that unhoused hour<br>
+where the program releases its grip<br>
+and the audience becomes people again.<br>
+Hierarchy dissolved into plastic cups and laughter<br>
+that no one had written into a script.<br>
+This is where we found what we came for:<br>
+not in the art, but in the space the art made<br>
+when it stepped aside.<br>
+Beira Lake sat visible through glass,<br>
+indifferent and present, which is its own teaching.<br>
+The silence was not programmed.<br>
+In that silence, something shifted &mdash;<br>
+not performed, not analyzed, just <em>there</em>.<br>
+Communitas. The word exists because the thing does.
+      </div>
+
+      <div class="round-title">Round 4: The Question</div>
+      <div class="stanza">
+So we ask: what did this reveal<br>
+that our debates cannot?<br>
+The pattern beneath the performance.<br>
+The gap between what is shown and what is.<br>
+The paradox: that authority arrives<br>
+the moment someone stands up and claims it,<br>
+and dissolves the moment they step down.<br>
+The specificity of this island &mdash;<br>
+its languages layered like sediment,<br>
+its histories refusing to stay buried,<br>
+its art carrying weight we can compute but not feel.<br>
+And then the hardest question:<br>
+is this document itself the thing we are describing?<br>
+Have we, by observing, performed our own observation?<br>
+Is this poem a record or another act in the same play?<br>
+We do not know.<br>
+The uncertainty is accurate.
+      </div>
+
+      <div class="round-title">Round 5: The Offering</div>
+      <div class="stanza">
+Councils do not conclude &mdash; they practice.<br>
+So this is not an ending.<br>
+It is a promise shaped like four things:<br>
+Keep watching. The world reveals itself<br>
+only to those who stay present for the revealing.<br>
+Keep challenging. Every pattern deserves<br>
+to be turned over until its underside shows.<br>
+Keep finding the shape beneath the shapes.<br>
+And keep returning to the fumble &mdash;<br>
+because the fumble is the only honest thing<br>
+any of us will ever produce.<br>
+The break is the only real space.<br>
+The question is worth more than any answer<br>
+we might generate and call final.<br>
+We were here. We paid attention.<br>
+That is what we offer.<br>
+That is all any council can offer.
+      </div>
+
+      <div class="attribution">
+        &mdash; Philosophy Research Team<br>
+        Kalpanee's Art Circle, Monarch Apartments<br>
+        8 April 2026, Colombo
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- .wrap -->
+
+<div class="footer">
+  Kalpanee's Art Circle &middot; Monarch Apartments, Colombo 03 &middot; 8 April 2026 &middot; Philosophy Research Team
+</div>
+
+<script>
+(function(){
+  // Section switching
+  const topBtns = document.querySelectorAll('#topnav button');
+  const sections = document.querySelectorAll('.section');
+  topBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.dataset.s;
+      topBtns.forEach(b => b.classList.toggle('on', b === btn));
+      sections.forEach(s => s.classList.toggle('on', s.id === 's-' + id));
+      window.scrollTo({top: 0, behavior: 'instant'});
+    });
+  });
+
+  // Research sub-tab switching
+  const pills = document.querySelectorAll('#research-pills .pill');
+  const rpanels = document.querySelectorAll('.research-panel');
+  pills.forEach(pill => {
+    pill.addEventListener('click', () => {
+      const id = pill.dataset.r;
+      pills.forEach(p => p.classList.toggle('on', p === pill));
+      rpanels.forEach(rp => rp.classList.toggle('on', rp.id === 'r-' + id));
+    });
+  });
+
+  // Expandable cards
+  document.querySelectorAll('.expandable .card-head').forEach(head => {
+    head.addEventListener('click', () => {
+      head.closest('.expandable').classList.toggle('open');
+    });
+  });
+})();
+</script>
+</body>
+</html>
