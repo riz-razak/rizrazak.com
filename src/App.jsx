@@ -13,6 +13,11 @@ const particles = [
 
 function App() {
   useEffect(() => {
+    const shouldReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    const isCoarsePointer = window.matchMedia('(pointer: coarse)').matches
+
+    if (shouldReduceMotion || isCoarsePointer) return undefined
+
     const layers = [
       { el: document.getElementById('layer1'), speed: 0.01 },
       { el: document.getElementById('layer2'), speed: 0.02 },
